@@ -1,1 +1,1 @@
-const sum = (a, b) => a + b;
+const last = (arr) => arr[arr.length - 1];
