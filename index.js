@@ -1,35 +1,8 @@
-const cycleSort = (arr) => {
-  for (let start = 0; start < arr.length - 1; start++) {
-    let item = arr[start];
-    let pos = start;
-    for (let i = start + 1; i < arr.length; i++) {
-      if (arr[i] < item) {
-        pos++;
-      }
-    }
-    if (pos === start) {
-      continue;
-    }
-    while (item === arr[pos]) {
-      pos++;
-    }
-    if (pos !== start) {
-      [item, arr[pos]] = [arr[pos], item];
-    }
-    while (pos !== start) {
-      pos = start;
-      for (let i = start + 1; i < arr.length; i++) {
-        if (arr[i] < item) {
-          pos++;
-        }
-      }
-      while (item === arr[pos]) {
-        pos++;
-      }
-      if (item !== arr[pos]) {
-        [item, arr[pos]] = [arr[pos], item];
-      }
-    }
-  }
-  return arr;
-};
+function sortedArrayToBST(nums) {
+  if (nums.length === 0) return null;
+  const mid = Math.floor(nums.length / 2);
+  const root = new TreeNode(nums[mid]);
+  root.left = sortedArrayToBST(nums.slice(0, mid));
+  root.right = sortedArrayToBST(nums.slice(mid + 1));
+  return root;
+}
